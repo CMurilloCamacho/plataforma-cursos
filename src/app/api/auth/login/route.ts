@@ -1,0 +1,8 @@
+import { loginUser } from "@/lib/services/auth-service";
+import { NextRequest } from "next/server";
+
+export const POST = async(req:NextRequest)=>{
+const body = await req.json()
+
+return await loginUser(body)
+}
