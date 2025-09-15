@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { v2 as cloudinary, UploadApiResponse } from "cloudinary";
 
@@ -49,6 +49,8 @@ export const PATCH = async (
   request: NextRequest,
   { params }: { params: { id: string } }
 ) => {
+
+    console.log('request.headers!!!!!', request.headers)
   try {
     const userRole = request.headers.get("userRole");
     const userId = request.headers.get('userid')
@@ -158,7 +160,7 @@ export const DELETE = async (
   try {
     const { id } = await Promise.resolve(params);
     const userRole = request.headers.get("userRole");
-    const userId = request.headers.get("userid");
+    const userId = request.headers.get("userId");
 
     if (!["ADMIN", "INSTRUCTOR"].includes(userRole || "")) {
       return NextResponse.json({

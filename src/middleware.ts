@@ -19,7 +19,7 @@ if (request.nextUrl.pathname.startsWith('/api/stripe/webhook')) {
         return NextResponse.json({message: 'No estás autorizado para obtener los cursos'}, {status: 403})
         
     }
-    return NextResponse.redirect(new URL('auth/login', request.url))
+    return NextResponse.redirect(new URL('/auth/login', request.url))
   }
 
   try {
@@ -62,5 +62,8 @@ if (request.nextUrl.pathname.startsWith('/api/stripe/webhook')) {
 };
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/api/courses/:path*", "/admin/:path*", "/api/stripe/:path*"],
+  matcher: ["/dashboard/:path*", 
+    "/api/courses/:path*", 
+    "/admin/:path*",
+     "/api/stripe/:path*"],
 };
